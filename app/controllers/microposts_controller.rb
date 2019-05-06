@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :show]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -14,10 +14,16 @@ class MicropostsController < ApplicationController
   def destroy
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+  end
+
+
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content)
+      # params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content,:title,:code)
     end
 
 end

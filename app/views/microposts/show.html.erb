@@ -1,0 +1,17 @@
+<% provide(:title, @micropost.id) %>
+<h1><%= @micropost.title %></h1>
+<h3>概要</h3>
+<p><%= @micropost.content %></p>
+<h3>デモ</h3>
+<iframe id="demo" height="200px"></iframe>
+
+<h3>コード</h3>
+<pre><code><%= @micropost.code %></code></pre>
+
+<script>
+ (function() {
+  'use strict';
+   var blob = new Blob(["<%= @micropost.code.html_safe %>"], { type: 'text/html' });
+   document.getElementById('demo').src = URL.createObjectURL(blob);
+   })();
+</script>

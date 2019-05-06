@@ -1,6 +1,21 @@
 <% if @feed_items.any? %>
  <ol class="microposts">
-   <%= render @feed_items %>
+
+   <table class="table table-striped">
+     <thead>
+       <th scope="col">タイトル</th>
+       <th scope="col">概要</th>
+     </thead>
+     <tbody>
+     <%= @feed_items.each do |f| %>
+     <tr>
+       <td><%= link_to f.title, micropost_path(f.id)%></td>
+       <td><%= f.content %></td>
+     </tr>
+     <% end %>
+     </tbody>
+   </table>
+
  </ol>
  <%= will_paginate @feed_items %>
 <% end %>
