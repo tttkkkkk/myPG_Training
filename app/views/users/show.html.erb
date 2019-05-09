@@ -17,7 +17,7 @@
           <th scope="col">概要</th>
         </thead>
         <tbody>
-        <%= @microposts.each do |f| %>
+        <% @microposts.each do |f| %>
         <tr>
           <td><%= link_to f.title, micropost_path(f.id)%></td>
           <td><%= f.content %></td>

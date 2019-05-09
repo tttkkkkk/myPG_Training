@@ -7,7 +7,7 @@
        <th scope="col">概要</th>
      </thead>
      <tbody>
-     <%= @feed_items.each do |f| %>
+     <% @feed_items.each do |f| %>
      <tr>
        <td><%= link_to f.title, micropost_path(f.id)%></td>
        <td><%= f.content %></td>

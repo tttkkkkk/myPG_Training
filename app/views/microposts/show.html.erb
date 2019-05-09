@@ -2,16 +2,40 @@
 <h1><%= @micropost.title %></h1>
 <h3>概要</h3>
 <p><%= @micropost.content %></p>
-<h3>デモ</h3>
-<iframe id="demo" height="200px"></iframe>
-
-<h3>コード</h3>
-<pre><code><%= @micropost.code %></code></pre>
+<div class="container">
+  <div class="row">
+  <div class="col-sm-4 order-sm-2">
+    <h3>デモ</h3>
+    <iframe id="demo" height="200px"></iframe>
+  </div>
+  <div id="divCode" class="col-sm-8 order-sm-1">
+    <h3>コード</h3>
+    <pre><code id="code"><%= @micropost.code %></code></pre>
+  </div>
+ </div>
+</div>
 
 <script>
+
  (function() {
   'use strict';
-   var blob = new Blob(["<%= @micropost.code.html_safe %>"], { type: 'text/html' });
-   document.getElementById('demo').src = URL.createObjectURL(blob);
-   })();
+
+  function setCode() {
+    var xxx = document.getElementById('code').textContent;
+    // console.log(xxx);
+    var blob = new Blob([xxx], { type: 'text/html' });
+    // console.log(blob);
+    document.getElementById('demo').src = URL.createObjectURL(blob);
+  }
+
+  window.addEventListener('load', () => {
+    console.log("window load");
+    setCode();
+  });
+  window.addEventListener('click', () => {
+    console.log("window click");
+    setCode();
+  });
+  
+  })();
 </script>
