@@ -22,14 +22,25 @@ class StaticPagesController < ApplicationController
     puts "** RoR **"
   end
 
+  #TODO カテゴリID の固定値はNG...（動的にしたい）
   def js
-    puts "** JS **"
-    @microposts = Micropost.all
-    if @microposts.any?
-      puts "** ok home **"
-    elsif
-      puts  @microposts.count
-      puts "** ng  home **"
-    end
+    search(1)
   end
+  def rails
+    search(2)
+  end
+  def sitemap
+    search()
+  end
+
+  private
+   def search(id=0)
+     if id == 0
+       @microposts = Micropost.all
+     else
+       @microposts = Micropost.where(Category_id: id)
+     end
+   end
+
+
 end

@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   root 'static_pages#home'
-  get  '/js',    to: 'static_pages#js'
+  get  '/js',         to: 'static_pages#js'
+  get  '/rails',      to: 'static_pages#rails'
+
   get  '/help',   to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
+  get  '/sitemap',   to: 'static_pages#sitemap'
   get  '/contact', to: 'static_pages#contact'
   # get  '/signup',  to: 'users#new'
 

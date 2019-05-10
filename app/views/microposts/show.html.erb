@@ -1,7 +1,11 @@
 <% provide(:title, @micropost.id) %>
+
+<%= link_to "Home", root_path %> > <%= link_to @category.name, root_path %>
 <h1><%= @micropost.title %></h1>
-<h3>概要</h3>
-<p><%= @micropost.content %></p>
+<p style=”white-space: pre-wrap;”><%= @micropost.content %></p>
+
+
+<% if @micropost.code.present? %>
 <div class="container">
   <div class="row">
   <div class="col-sm-4 order-sm-2">
@@ -36,6 +40,7 @@
     console.log("window click");
     setCode();
   });
-  
+
   })();
 </script>
+<% end %>

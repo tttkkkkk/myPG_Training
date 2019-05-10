@@ -1,18 +1,2 @@
 <% provide(:title, "JavaScript") %>
-<h1>All </h1>
-<% if @microposts.any? %>
-  <table class="table table-striped">
-    <thead>
-      <th scope="col">タイトル</th>
-      <th scope="col">概要</th>
-    </thead>
-    <tbody>
-    <% @microposts.each do |f| %>
-    <tr>
-      <td><%= link_to f.title, micropost_path(f.id)%></td>
-      <td><%= f.content %></td>
-    </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
+<%= render 'form' %>

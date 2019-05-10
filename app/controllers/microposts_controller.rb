@@ -16,6 +16,7 @@ class MicropostsController < ApplicationController
 
   def show
     @micropost = Micropost.find(params[:id])
+    @category = Category.find(@micropost.category_id)
   end
 
 
