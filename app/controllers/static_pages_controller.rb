@@ -38,7 +38,7 @@ class StaticPagesController < ApplicationController
      if id == 0
        @microposts = Micropost.all
      else
-       @microposts = Micropost.where(Category_id: id)
+       @microposts = Micropost.where(category_id: id)
      end
    end
 
