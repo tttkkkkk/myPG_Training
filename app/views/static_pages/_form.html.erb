@@ -1,9 +1,15 @@
 <%= link_to "Home", root_path %> > <%= yield(:title)  %>
 <% if @microposts.any? %>
+
+
+<div class="container">
+  <div class="row">
+    <div >
+
   <table class="table table-striped">
     <thead>
-      <th scope="col">タイトル</th>
-      <th scope="col">概要</th>
+      <th  class="col-xs-4 col-sm-4" scope="col">タイトル</th>
+      <th  class="col-xs-4 col-sm-8" scope="col">概要</th>
     </thead>
     <tbody>
     <% @microposts.each do |f| %>
