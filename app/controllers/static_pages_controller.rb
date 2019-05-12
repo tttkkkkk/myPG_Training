@@ -29,6 +29,9 @@ class StaticPagesController < ApplicationController
   def rails
     search(2)
   end
+  def jquery
+    search(3)
+  end
   def sitemap
     search()
   end
@@ -36,7 +39,9 @@ class StaticPagesController < ApplicationController
   private
    def search(id=0)
      if id == 0
-       @microposts = Micropost.all
+       # @microposts = Micropost.all
+       @q = Micropost.ransack(params[:q])
+       @microposts = @q.result(distinct: true).page(params[:page])
      else
        @microposts = Micropost.where(category_id: id)
      end

@@ -1,8 +1,8 @@
 <% provide(:title, @micropost.id) %>
 
-<%= link_to "Home", root_path %> > <%= link_to @category.name, root_path %>
+<%= link_to "Top", root_path %> > <%= link_to @category.name, root_path %>
 <h1><%= @micropost.title %></h1>
-<p style=”white-space: pre-wrap;”><%= @micropost.content %></p>
+<p><%= simple_format @micropost.content %></p>
 
 
 <% if @micropost.code.present? %>

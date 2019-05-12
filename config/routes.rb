@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   get  '/js',         to: 'static_pages#js'
+  get  '/jquery',     to: 'static_pages#jquery'
   get  '/rails',      to: 'static_pages#rails'
 
   get  '/help',   to: 'static_pages#help'

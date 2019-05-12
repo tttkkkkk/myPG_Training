@@ -1,11 +1,8 @@
-<%= link_to "Home", root_path %> > <%= yield(:title)  %>
+<%= link_to "Top", root_path %> > <%= yield(:title)  %>
 <% if @microposts.any? %>
-
-
 <div class="container">
   <div class="row">
     <div >
-
   <table class="table table-striped">
     <thead>
       <th  class="col-xs-4 col-sm-4" scope="col">タイトル</th>
@@ -15,7 +12,7 @@
     <% @microposts.each do |f| %>
     <tr>
       <td><%= link_to f.title, micropost_path(f.id)%></td>
-      <td><%= f.content %></td>
+      <td><%= f.content.truncate(120) %></td>
     </tr>
     <% end %>
     </tbody>

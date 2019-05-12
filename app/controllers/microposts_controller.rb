@@ -3,15 +3,18 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+    if @micropost.save!
+      # flash[:success] = "Micropost created!"
+      redirect_to current_user
     else
-      render 'static_pages/home'
+      render current_user
     end
   end
 
   def destroy
+      @micropost = Micropost.find(params[:id])
+      @micropost.destroy!
+      redirect_to current_user
   end
 
   def show
@@ -19,12 +22,10 @@ class MicropostsController < ApplicationController
     @category = Category.find(@micropost.category_id)
   end
 
-
   private
-
     def micropost_params
       # params.require(:micropost).permit(:content)
-      params.require(:micropost).permit(:content,:title,:code)
+      params.require(:micropost).permit(:category_id,:content,:title,:code)
     end
 
 end

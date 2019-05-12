@@ -20,15 +20,21 @@ textarea {
   margin-bottom: 10px;
 }
 
-#logo {
+#logo ,#pHead{
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 0.8em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
+}
+#logo{
+  font-size: 1.7em;
   font-weight: bold;
+}
+#pHead{
+  font-size: 0.8em;
 }
 #logo:hover {
   color: #fff;
