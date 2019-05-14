@@ -8,11 +8,11 @@
 <% if @micropost.code.present? %>
 <div class="container">
   <div class="row">
-  <div class="col-sm-4 order-sm-2">
+  <div class="col-sm-5 order-sm-2">
     <h3>デモ</h3>
-    <iframe id="demo" height="200px"></iframe>
+    <iframe id="demo" width="400px" height="200px"></iframe>
   </div>
-  <div id="divCode" class="col-sm-8 order-sm-1">
+  <div id="divCode" class="col-sm-7 order-sm-1">
     <h3>コード</h3>
     <pre><code id="code"><%= @micropost.code %></code></pre>
   </div>
@@ -32,14 +32,17 @@
     document.getElementById('demo').src = URL.createObjectURL(blob);
   }
 
-  window.addEventListener('load', () => {
+  // window.onload = function(){
+    document.addEventListener("turbolinks:load", function(){
+    //TODO 調査、おそらく動いていない
     console.log("window load");
     setCode();
-  });
-  window.addEventListener('click', () => {
-    console.log("window click");
-    setCode();
-  });
+   })
+
+  // window.addEventListener('click', () => {
+  //   console.log("window click");
+  //   setCode();
+  // });
 
   })();
 </script>
