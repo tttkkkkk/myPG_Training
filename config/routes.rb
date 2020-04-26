@@ -20,4 +20,10 @@ Rails.application.routes.draw do
   resources :users
   resources :microposts
   resources :mydashboard, only: [:create, :destroy, :show]
+
+  # API呼出
+  namespace :api do
+    get  '/microposts', to: 'microposts#index'
+  end
+
 end

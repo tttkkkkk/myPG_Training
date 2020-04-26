@@ -18,6 +18,7 @@ gem 'seed_dump'
 gem 'ransack'
 gem 'redcarpet'
 gem 'coderay'
+gem 'active_model_serializers'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', groups: %w(test development), require: false

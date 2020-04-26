@@ -2,7 +2,7 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :show]
 
   def create
-    @micropost = current_user.microposts.build(micropost_params)
+    @micropost = current_user.microposts.build(strong_params)
     if @micropost.save!
       # flash[:success] = "Micropost created!"
       redirect_to current_user
@@ -10,7 +10,7 @@ class MicropostsController < ApplicationController
       render current_user
     end
   end
-
+  
   def destroy
       @micropost = Micropost.find(params[:id])
       @micropost.destroy!
@@ -23,9 +23,14 @@ class MicropostsController < ApplicationController
   end
 
   private
-    def micropost_params
+    def strong_params
+      # params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:category_id,:content,:title,:code)
+    end
+    def search_params
       # params.require(:micropost).permit(:content)
       params.require(:micropost).permit(:category_id,:content,:title,:code)
     end
 
 end
+
