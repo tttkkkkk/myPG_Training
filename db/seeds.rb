@@ -1,5 +1,5 @@
 User.create!([
-  {name: "aaa", email: "aaa@yahoo.co.jp", password_digest: "$2a$10$hJ4e.70zupqDBZzGv4CB6OGwN/LHWsAsRu/nJREVZ68zOhSmVfafq", remember_digest: nil, activation_digest: "$2a$10$55Vbnr8D0D/aJFBws0fRR.zN4HmgfNkWidTqBQEpULGhk23KUXppu", activated: false, activated_at: nil, admin: false}
+  {name: "aaa", email: "aaa@yahoo.co.jp", password_digest: "$2a$10$DJSCcJg7zZDJZU6Xx5GurOmswb/ab5.Q/dd0YVGM7pzfPGXVG7YJO", remember_digest: nil, activation_digest: "$2a$10$55Vbnr8D0D/aJFBws0fRR.zN4HmgfNkWidTqBQEpULGhk23KUXppu", activated: false, activated_at: nil, admin: false}
 ])
 
 Category.create!([
