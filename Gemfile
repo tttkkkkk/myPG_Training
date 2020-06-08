@@ -21,7 +21,7 @@ gem 'coderay'
 gem 'active_model_serializers'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', groups: %w(test development), require: false
+gem 'sqlite3', '~> 1.3.6', groups: %w(test development), require: false
 gem 'pg', groups: %w(production), require: false
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
