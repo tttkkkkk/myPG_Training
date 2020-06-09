@@ -2,6 +2,7 @@
 
 <%= link_to "Top", root_path %> > <%= link_to @category.name, root_path %>
 <h1><%= @micropost.title %></h1>
+<%= @micropost.check %> <%= link_to "+", root_path %>
 <p><%= simple_format @micropost.content %></p>
 
 
