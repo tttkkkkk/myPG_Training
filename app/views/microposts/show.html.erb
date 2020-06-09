@@ -2,9 +2,8 @@
 
 <%= link_to "Top", root_path %> > <%= link_to @category.name, root_path %>
 <h1><%= @micropost.title %></h1>
-<%= @micropost.check %> <%= link_to "+", root_path %>
+<%= @micropost.check %> <%= link_to "+", upd_add_micropost_path(@micropost) , remote: true, method: :put, class: 'btn btn-primary', data:{disable_with:'..'} %>
 <p><%= simple_format @micropost.content %></p>
-
 
 <% if @micropost.code.present? %>
 <div class="container">

@@ -10,7 +10,12 @@ class MicropostsController < ApplicationController
       render current_user
     end
   end
-  
+
+  def upd_add
+    micropost = Micropost.find(params[:id])
+    micropost.update_column(:check, micropost.check + 1)
+  end
+
   def destroy
       @micropost = Micropost.find(params[:id])
       @micropost.destroy!
