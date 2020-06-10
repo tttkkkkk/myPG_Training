@@ -16,6 +16,11 @@ class MicropostsController < ApplicationController
     micropost.update_column(:check, micropost.check + 1)
   end
 
+  def upd_mns
+    micropost = Micropost.find(params[:id])
+    micropost.update_column(:check, micropost.check - 1)
+  end
+
   def destroy
       @micropost = Micropost.find(params[:id])
       @micropost.destroy!
