@@ -5,6 +5,10 @@
    <%= f.text_field :title, size: "20x1",  placeholder: "title..." %>
    <%= f.text_area :content, size: "20x10", placeholder: "Compose new micropost..." %>
    <%= f.text_area :code,  placeholder: "code..." %>
+
+   <%= fields_for(@link) do |i| %>
+    <%= i.text_field :url,  placeholder: "url..." %>
+  <% end %>
  </div>
 
  <%= f.submit "Post", class: "btn btn-primary btn-lg" %>

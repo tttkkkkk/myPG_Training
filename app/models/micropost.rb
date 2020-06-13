@@ -1,7 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
   has_many :links
-  accepts_nested_attributes_for :links
 
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true

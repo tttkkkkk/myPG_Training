@@ -2,17 +2,18 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :show]
 
   def create
-    ActiveRecord::Base::transaction do
-      @micropost = current_user.microposts.build(strong_params)
-      if @micropost.save!
-        # テスト用リンクを追加
-        Link.create!(url: "https://www.google.com", micropost: @micropost)
-        # Link.create!(url: "https://www.google.com")  # rollbackテスト用
-        # flash[:success] = "Micropost created!"
-        redirect_to current_user
-      else
-        render current_user
+    begin
+      ActiveRecord::Base::transaction do      
+        @micropost = Micropost.new(strong_params.merge!(user: current_user))
+        @micropost.save!
+        @link = Link.new(link_params.merge!(micropost: @micropost))
+        @link.save!
+        redirect_to current_user      
       end
+    rescue => e
+      Rails.logger.error( e.message )
+      Rails.logger.error( e.backtrace.join("\n") )
+      render current_user
     end
   end
 
@@ -27,21 +28,25 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-      @micropost = Micropost.find(params[:id])
-      @micropost.destroy!
-      redirect_to current_user
+    @micropost = Micropost.find(params[:id])
+    @micropost.destroy!
+    redirect_to current_user
   end
 
   def show
     @micropost = Micropost.find(params[:id])
-    @category = Category.find(@micropost.category_id)
     @links = @micropost.links
+    @category = Category.find(@micropost.category_id)
   end
 
   private
     def strong_params
       # params.require(:micropost).permit(:content)
       params.require(:micropost).permit(:category_id,:content,:title,:code)
+      # params.require(:micropost).permit(:category_id,:content,:title,:code, link_attributes:[:url])
+    end
+    def link_params
+      params.require(:link).permit(:url)
     end
     def search_params
       # params.require(:micropost).permit(:content)
