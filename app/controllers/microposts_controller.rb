@@ -2,12 +2,17 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :show]
 
   def create
-    @micropost = current_user.microposts.build(strong_params)
-    if @micropost.save!
-      # flash[:success] = "Micropost created!"
-      redirect_to current_user
-    else
-      render current_user
+    ActiveRecord::Base::transaction do
+      @micropost = current_user.microposts.build(strong_params)
+      if @micropost.save!
+        # テスト用リンクを追加
+        Link.create!(url: "https://www.google.com", micropost: @micropost)
+        # Link.create!(url: "https://www.google.com")  # rollbackテスト用
+        # flash[:success] = "Micropost created!"
+        redirect_to current_user
+      else
+        render current_user
+      end
     end
   end
 
@@ -30,6 +35,7 @@ class MicropostsController < ApplicationController
   def show
     @micropost = Micropost.find(params[:id])
     @category = Category.find(@micropost.category_id)
+    @links = @micropost.links
   end
 
   private

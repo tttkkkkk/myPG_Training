@@ -9,10 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # 記事一覧
     @microposts = @user.microposts.paginate(page: params[:page])
-
-    # ログイン後
+    # 新規投稿用
     @micropost  = current_user.microposts.build
+    # 参考URL（あれば登録
+    @link = @micropost.links.build
     @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
@@ -24,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to mypgtraining!"
       redirect_to @user
     else
       render 'new'

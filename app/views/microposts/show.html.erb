@@ -2,11 +2,6 @@
 
 <%= link_to "Top", root_path %> > <%= link_to @category.name, root_path %>
 <h1><%= @micropost.title %></h1>
-<p>
-<%= @micropost.check %> 
-<%= link_to "+", upd_add_micropost_path(@micropost) , remote: true, method: :put, class: 'btn btn-primary', data:{disable_with:'..'} %> 
-<%= link_to "-", upd_mns_micropost_path(@micropost) , remote: true, method: :put, class: 'btn btn-primary', data:{disable_with:'..'} %>
-</p>
 <p><%= simple_format @micropost.content %></p>
 
 <% if @micropost.code.present? %>
@@ -21,6 +16,24 @@
     <pre><code id="code"><%= @micropost.code %></code></pre>
   </div>
  </div>
+</div>
+
+<div class="container">
+<% if !@links.nil? %>
+<h3>参考リンク</h3>
+<% @links.each do |f| %>
+  <tr>
+    <td><%= link_to f.url, f.url %></td>
+  </tr>
+<% end %>
+<% end %>
+
+<br/><br/>
+<p>理解度 : <%= @micropost.check %></p>
+<p>
+<%= link_to "+", upd_add_micropost_path(@micropost) , remote: true, method: :put, class: 'btn btn-primary', data:{disable_with:'..'} %> 
+<%= link_to "-", upd_mns_micropost_path(@micropost) , remote: true, method: :put, class: 'btn btn-primary', data:{disable_with:'..'} %>
+</p>
 </div>
 
 <script>
