@@ -19,7 +19,7 @@
 </div>
 
 <div class="container">
-<% if !@links.nil? %>
+<% if @links.present? %>
 <h3>参考リンク</h3>
 <% @links.each do |f| %>
   <tr>
