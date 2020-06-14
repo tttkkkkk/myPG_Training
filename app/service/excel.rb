@@ -1,6 +1,6 @@
 module Excel
 
-  #実行の仕方
+  #[実行の手順]
   #0 gem install roo  （インストール済ならスキップ）
   #1 ターミナル起動
   #2 cd app/service
