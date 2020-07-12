@@ -5,14 +5,16 @@
      <thead>
        <th scope="col"></th>
        <th scope="col"></th>
+       <th scope="col">分類</th>
        <th scope="col">タイトル</th>
        <th scope="col">概要</th>
      </thead>
      <tbody>
      <% @feed_items.each do |f| %>
      <tr>
+       <td><%= link_to '[e]', edit_micropost_path(f.id), method: :get, class: 'command'%></td>
        <td><%= link_to '[x]', micropost_path(f.id), method: :delete, class: 'command', data: {confirm: 'Sure?'} %></td>
-       <td><%= f.category_id %></td>
+       <td><%= f.category&.name %></td>
        <td><%= link_to f.title, micropost_path(f.id)%></td>
        <td><%= f.content.truncate(120) %></td>
      </tr>

@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
   belongs_to :user
+  belongs_to :category
   has_many :links
   mount_uploader :image , ImageUploader
 

@@ -33,6 +33,17 @@ class MicropostsController < ApplicationController
     redirect_to current_user
   end
 
+  def edit
+    @micropost = Micropost.find(params[:id])
+  end
+
+  def update
+    @micropost = Micropost.find(params[:id])
+    @micropost.attributes = strong_params
+    @micropost.save!
+    redirect_to current_user      
+  end
+
   def show
     @micropost = Micropost.find(params[:id])
     @links = @micropost.links

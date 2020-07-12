@@ -3,7 +3,7 @@
 <%= link_to "Top", root_path %> > <%= link_to @category.name, root_path %>
 <h1><%= @micropost.title %></h1>
 <p><%= simple_format @micropost.content %></p>
-<%= image_tag @micropost.image.url if @micropost.image? %>
+<%= image_tag @micropost.image.url(:thumb) if @micropost.image? %>
 
 <% if @micropost.code.present? %>
 <div class="container">

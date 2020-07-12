@@ -1,0 +1,18 @@
+<%= form_for(@micropost, html: { multipart: true }) do |f| %>
+ <%= render 'shared/error_messages', object: f.object %>
+ <div class="field">
+   <%= f.text_field :category_id, size: "1x1",  value:2 %>
+   <%= f.text_field :title, size: "20x1",  placeholder: "title..." %>
+   <%= f.text_area :content, size: "20x10", placeholder: "Compose new micropost..." %>
+   <%= f.text_area :code,  placeholder: "code..." %>
+   <%= f.file_field :image %>
+   <% if @micropost.image.present? %>
+   <%= image_tag @micropost.image_url(:thumb).to_s %><br />
+   <% end %>
+   <%= fields_for(@link) do |i| %>
+    <%= i.text_field :url,  placeholder: "url..." %>
+  <% end %>
+ </div>
+
+ <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
+<% end %>
