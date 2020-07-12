@@ -1,5 +1,5 @@
 <%= link_to "Top", root_path %> > <%= link_to "sample", sample_path %> > <%= yield(:title)  %>
-<% if @microposts.any? %>
+<% if @microposts.present? %>
 <div class="container">
   <div class="row">
     <div >

@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   # トップ画面
   root 'static_pages#home'
-  # サンプル画面
+  # サブ画面
   get  '/sample',     to: 'static_pages#sample'
+  get  '/study',     to: 'static_pages#study'
 
   # 各カテゴリの一覧
   get  '/js',         to: 'static_pages#js'
   get  '/jquery',     to: 'static_pages#jquery'
   get  '/rails',      to: 'static_pages#rails'
+  get  '/ruby',      to: 'static_pages#ruby'
   # 静的ページ参照
   get  '/help',      to: 'static_pages#help'
   get  '/about',     to: 'static_pages#about'

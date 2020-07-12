@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
     # @feed_items = current_user.feed.paginate(page: params[:page])
     puts "** home **"
     @microposts = Micropost.all
-    if @microposts.any?
+    if @microposts.present?
       puts "** ok home **"
     elsif
       puts  @microposts.count

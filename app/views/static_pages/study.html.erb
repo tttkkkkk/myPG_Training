@@ -1,17 +1,17 @@
-<% provide(:title, "") %>
+<% provide(:title, "sample") %>
 <!DOCTYPE html>
 <html>
   <body>
 
-    <h5>Top</h5>
+    <%= link_to "Top", root_path %> > <%= yield(:title)  %>
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
-        <%= link_to "学習", study_path, class: "btn btn-block btn-success" %>
+        <%= link_to "Ruby", ruby_path, class: "btn btn-block btn-success" %>
         </div>
         <div class="col-sm-1" style="margin-bottom:10px;"></div>
         <div class="col-sm-3">
-          <%= link_to "サンプル", sample_path, class: "btn btn-block btn-primary" %>
+          <%= link_to "Rails", rails_path, class: "btn btn-block btn-success" %>
         </div>
        </div>
      </div>
