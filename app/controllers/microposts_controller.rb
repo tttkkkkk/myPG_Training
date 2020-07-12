@@ -41,15 +41,12 @@ class MicropostsController < ApplicationController
 
   private
     def strong_params
-      # params.require(:micropost).permit(:content)
-      params.require(:micropost).permit(:category_id,:content,:title,:code)
-      # params.require(:micropost).permit(:category_id,:content,:title,:code, link_attributes:[:url])
+      params.require(:micropost).permit(:category_id,:content,:title,:code, :image)
     end
     def link_params
       params.require(:link).permit(:url)
     end
     def search_params
-      # params.require(:micropost).permit(:content)
       params.require(:micropost).permit(:category_id,:content,:title,:code)
     end
 
