@@ -26,9 +26,23 @@ class MicropostsController < ApplicationController
   def index
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @links = @micropost.links
+    @category = Category.find(@micropost.category_id)
+  end
+
   def upd_add
-    micropost = Micropost.find(params[:id])
-    micropost.update_column(:check, micropost.check + 1)
+    @micropost = Micropost.find(params[:id])
+    @micropost.update_column(:check, @micropost.check + 1)
+
+    #TODO　一旦保留（再表示したい感じ）
+    # @links = @micropost.links
+    # @category = Category.find(@micropost.category_id)
+    # redirect_to :show
+    # render action: :show
+    # render("microposts/show")
+    # redirect_to :show
   end
 
   def upd_mns
@@ -59,12 +73,6 @@ class MicropostsController < ApplicationController
       Rails.logger.error( e.backtrace.join("\n") )
       render :edit
     end
-  end
-
-  def show
-    @micropost = Micropost.find(params[:id])
-    @links = @micropost.links
-    @category = Category.find(@micropost.category_id)
   end
 
   private
