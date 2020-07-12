@@ -3,18 +3,27 @@ class MicropostsController < ApplicationController
 
   def create
     begin
-      ActiveRecord::Base::transaction do      
+      ActiveRecord::Base::transaction do
         @micropost = Micropost.new(strong_params.merge!(user: current_user))
-        @micropost.save!
-        @link = Link.new(link_params.merge!(micropost: @micropost))
-        @link.save!
-        redirect_to current_user      
+        if @micropost.save
+          @link = Link.new(link_params.merge!(micropost: @micropost))
+          @link.save
+          flash[:success] = 'create!'
+          redirect_to current_user
+        else
+          @user = current_user
+          @feed_items = current_user.feed.paginate(page: params[:page])
+          render("users/show")
+        end
       end
     rescue => e
       Rails.logger.error( e.message )
       Rails.logger.error( e.backtrace.join("\n") )
-      render current_user
+      redirect_to current_user
     end
+  end
+
+  def index
   end
 
   def upd_add
@@ -30,6 +39,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost = Micropost.find(params[:id])
     @micropost.destroy!
+    flash[:success] = 'delete!'
     redirect_to current_user
   end
 
@@ -38,10 +48,17 @@ class MicropostsController < ApplicationController
   end
 
   def update
-    @micropost = Micropost.find(params[:id])
-    @micropost.attributes = strong_params
-    @micropost.save!
-    redirect_to current_user      
+    begin
+      @micropost = Micropost.find(params[:id])
+      @micropost.attributes = strong_params
+      @micropost.save!
+      flash[:success] = 'update!'
+      redirect_to current_user
+    rescue => e
+      Rails.logger.error( e.message )
+      Rails.logger.error( e.backtrace.join("\n") )
+      render :edit
+    end
   end
 
   def show

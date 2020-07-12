@@ -5,8 +5,7 @@ class Micropost < ApplicationRecord
   mount_uploader :image , ImageUploader
 
   default_scope -> { order(created_at: :desc) }
-  validates :user_id, presence: true
-  validates :content, presence: true
+  validates :user_id, :title, :content, presence: true
   validate  :image_size
   
   # アップロード画像のサイズを検証

@@ -1,11 +1,16 @@
-本サイトはRuby on Railsにて実装しています。チュートリアル終えたばかりの初学者が作成してます。<br>
-<a href="https://github.com/tttkkkkk/myPG_Training">GitHubはこちらから</a><br><br>
+<% provide(:title, "about") %>
+<%= link_to "Top", root_path %> > <%= yield(:title)  %>
+<br><br>
+本サイトはRuby on Railsにて実装しています。<br>
+<a href="https://github.com/tttkkkkk/myPG_Training">GitHubはこちらから（現在Private設定なので見れません..）</a><br><br>
 
 <ul>【実装している機能】
   <li>ログイン-記事の登録・削除</li>
   <li>検索</li>
   <li>ページネーション</li>
 </ul>
-<ul>【今後の作業】
+<ul>【今後やりたいこと】
   <li>シンタックスハイライト</li>
+  <li>アプリ（ReactNative）にAPI連携</li>
+  <li>バッチ処理で、定期的に通知（復習するような感じ）</li>
 </ul>
