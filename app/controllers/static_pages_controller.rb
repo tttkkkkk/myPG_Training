@@ -43,8 +43,9 @@ class StaticPagesController < ApplicationController
        @q = Micropost.ransack(params[:q])
        @microposts = @q.result(distinct: true).page(params[:page])
      else
-       @microposts = Micropost.where(category_id: id)
-     end
+      @microposts = Micropost.where(category_id: id)
+      @category = Category.find_by(id: id)
+    end
    end
 
 

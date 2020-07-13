@@ -3,9 +3,9 @@ User.create!([
 ])
 
 Category.create!([
-  {name: "JavaScript"},
-  {name: "Rails"},
-  {name: "jQuery"}
+  {name: "JavaScript", kind: 0},
+  {name: "Rails", kind: 1},
+  {name: "jQuery", kind: 0}
 ])
 
 Micropost.create!([
