@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # サブ画面
   get  '/sample',     to: 'static_pages#sample'
   get  '/study',     to: 'static_pages#study'
-
   # 各カテゴリの一覧
   get  '/js',         to: 'static_pages#js'
   get  '/jquery',     to: 'static_pages#jquery'
