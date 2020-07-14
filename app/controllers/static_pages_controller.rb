@@ -26,11 +26,14 @@ class StaticPagesController < ApplicationController
   def js
     search(1)
   end
-  def rails
-    search(2)
-  end
   def jquery
     search(3)
+  end
+  def rails
+    search(3)
+  end
+  def ruby
+    search(4)
   end
   def sitemap
     search()

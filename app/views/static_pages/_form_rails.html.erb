@@ -1,0 +1,25 @@
+<%= link_to "Top", root_path %> > <%= link_to @category&.kind, "/#{@category&.kind}" %> > <%= yield(:title)  %>
+
+<% if @microposts.present? %>
+<div class="row">
+  <div class="listings">
+  <% @microposts.each do |f| %>
+    <tr>
+    <td><a href="#<%=f.id%>"><%= f.title.truncate(40)%></a></td>
+    </tr>
+    <br/>
+    <br/>
+    <% end %>
+  </div>
+  <div class="form_main">
+    <% @microposts.each do |f| %>
+      <tr>
+      <td><h3 id="<%=f.id%>"><%= link_to f.title, micropost_path(f.id)%></h3></td>
+      </tr>
+      <tr>
+      <td><%= simple_format f.content %></td>
+      </tr>
+    <% end %>
+  </div>
+</div>
+<% end %>
