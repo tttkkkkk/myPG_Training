@@ -1,16 +1,16 @@
 <%= form_for(@micropost, html: { multipart: true, autocomplete: "off"} ) do |f| %>
  <%= render 'shared/error_messages', object: f.object %>
  <div class="field">
-   <%= f.select :category_id, Category.all.map{|a| [a.name, a.id]}, {:selected => @micropost.category_id, :include_blank => '選択してください'} %>
-   <%= f.text_field :title, size: "20x1",  placeholder: "title..." %>
-   <%= f.text_area :content, size: "20x10", placeholder: "Compose new micropost..." %>
-   <%= f.text_area :code,  placeholder: "code..." %>
+   <%= f.select :category_id, Category.all.map{|a| [a.name, a.id]}, {:selected => @micropost.category_id, :include_blank => 'カテゴリ選択'} %>
+   <%= f.text_field :title, size: "20x1",  placeholder: "件名.." %>
+   <%= f.text_area :content, size: "20x13", placeholder: "概要.." %>
+   <%= f.text_area :code,  placeholder: "code.." %>
    <%= f.file_field :image %>
    <% if @micropost.image.present? %>
    <%= image_tag @micropost.image_url(:thumb).to_s %><br />
    <% end %>
    <%= fields_for(@link) do |i| %>
-    <%= i.text_field :url,  placeholder: "url..." %>
+    <%= i.text_field :url,  placeholder: "url.." %>
   <% end %>
  </div>
 

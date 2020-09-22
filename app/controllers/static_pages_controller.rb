@@ -1,18 +1,9 @@
 class StaticPagesController < ApplicationController
 
   def home
-    # @micropost  = current_user.microposts.build
-    # @feed_items = current_user.feed.paginate(page: params[:page])
-    puts "** home **"
-    @microposts = Micropost.all
-    if @microposts.present?
-      puts "** ok home **"
-    elsif
-      puts  @microposts.count
-      puts "** ng  home **"
+    @category_sample = Category.sample
+    @category_study = Category.study
     end
-
-  end
 
   def help
     puts "** help **"
@@ -22,7 +13,8 @@ class StaticPagesController < ApplicationController
     puts "** RoR **"
   end
 
-  #TODO カテゴリID の固定値はNG...（動的にしたい）
+  #カテゴリID で検索
+  #__method__ でメソッド名が取得可
   def js
     search(1)
   end
@@ -40,14 +32,13 @@ class StaticPagesController < ApplicationController
   end
 
   private
-   def search(id=0)
-     if id == 0
-       # @microposts = Micropost.all
-       @q = Micropost.ransack(params[:q])
-       @microposts = @q.result(distinct: true).page(params[:page])
+   def search(id = nil)
+     if id
+      @category = Category.find_by_id(id)
+      @microposts = Micropost.where(category: @category)
      else
-      @microposts = Micropost.where(category_id: id)
-      @category = Category.find_by(id: id)
+      @q = Micropost.ransack(params[:q])
+      @microposts = @q.result(distinct: true).page(params[:page])
     end
    end
 

@@ -2,7 +2,7 @@
 <%= link_to "Top", root_path %> > <%= yield(:title)  %>
 
 <%= search_form_for @q, url: sitemap_path do |f| %>
-<%= f.label :title_start, "検索" %>
+<%= f.label :title_start, "検索（タイトル | 概要）" %>
 <%= f.search_field :title_or_content_cont %>
 <%= f.submit  class: "btn btn-sm"%>
 <% end %>
