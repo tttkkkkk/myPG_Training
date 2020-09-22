@@ -1,3 +1,6 @@
+require 'csv'
+require 'kconv'
+
 class StaticPagesController < ApplicationController
 
   def home
@@ -30,6 +33,31 @@ class StaticPagesController < ApplicationController
   def sitemap
     search()
   end
+
+  def download    
+    @microposts = Micropost.where(user: current_user)
+    headers = Micropost::CSV_EXPORT_HEADER
+    microposts = []
+    @microposts.each do |micropost|
+      microposts << micropost
+    end
+    send_csv_data headers, microposts
+  end
+
+  # CSVファイルをダウンロード
+  def send_csv_data(header, records)
+    csv_string = CSV.generate do |csv|
+      csv<< header
+      records.each do |record|
+        csv<< record.to_export_row  rescue nil
+      end
+    end.tosjis
+
+    send_data(csv_string,
+      :type => "text/csv; charset=shift_jis",
+      :filename => "#{Time.now.strftime('%Y%m%d-%H%M')}.csv")
+  end
+
 
   private
    def search(id = nil)

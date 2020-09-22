@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
   end
   resources :mydashboard, only: [:create, :destroy, :show]
+  # 管理者CSV出力
+  get    '/download',  to: 'static_pages#download'
 
   # API呼出
   namespace :api do

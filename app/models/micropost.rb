@@ -20,4 +20,16 @@ class Micropost < ApplicationRecord
     micropost = micropost.where(category_id: params[:category_id]) if params[:category_id].present?    
     return micropost
   end
+
+  # CSV_HEADER
+  CSV_EXPORT_HEADER = [
+    'ID', '内容', 'ユーザーID', 'コード', '件名', 'カテゴリID'
+  ]
+  HEADER_COLUMN_MAPPING = {
+    'ID' => 'id','内容' => 'content','ユーザーID' => 'user_id', 'コード' => 'code', '件名' => 'title', 'カテゴリID' => 'category_id'
+  }
+  def to_export_row
+    [id, content, user_id, code ,title ,category_id]
+  end
+
 end
