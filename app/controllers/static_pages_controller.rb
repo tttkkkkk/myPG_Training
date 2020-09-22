@@ -1,9 +1,9 @@
 class StaticPagesController < ApplicationController
 
   def home
-    @category_sample = Category.sample
-    @category_study = Category.study
-    end
+    @microposts = Micropost.where(user: current_user)
+    @microposts = @microposts.joins(:category).order(updated_at: "desc").limit(7)
+  end
 
   def help
     puts "** help **"
